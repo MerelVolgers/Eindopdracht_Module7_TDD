@@ -216,10 +216,53 @@ describe("getYieldForPlant with environmental factors", () => {
     });
 
 });
+// 9. get yield for crop with environmental factors 
 
-// get profit for crop with environmental factors
+describe("getYieldForCrop", () => {
+    test("Get yield for corn with environmental factors", () => {
+        const corn = {
+            name: "corn",
+            yield: 3, 
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+    
+                wind: {
+                    low: 0,
+                    medium: 0,
+                    high: 0,
+                },
+    
+                soil: {
+                    sandy: -20,
+                    clay: 0,
+                    silt: 40,
+                },
+            }
+        };
 
-describe("getProfitForCrop with environmental factors", () => {
+        const input = {
+            crop: corn,
+            numCrops: 10,  
+        };
+
+        const environmentalFactors = {
+            sun: "high",
+            wind: "high",
+            soil: "sandy",
+        };
+
+        expect(getYieldForCrop(input, environmentalFactors)).toBe(36); 
+    });
+});
+
+
+// 10. get profit for crop with environmental factors
+
+describe("getProfitForCrop", () => {
     const corn = {
         name: "corn",
         yield: 3,
@@ -257,13 +300,13 @@ describe("getProfitForCrop with environmental factors", () => {
         soil: "silt",
     }
 
-    test("getProfitForCrop with environmental factors Corn", () => {
+    test("getProfitFor Corn with environmental factors", () => {
         expect(getProfitForCrop(input, environmentalFactors)).toBe(116); 
     });
 
 });
 
-// get profit for multiple crops including environmental factors
+// 11. get profit for multiple crops including environmental factors
 
 
 describe("getTotalProfit of crops", () => {
